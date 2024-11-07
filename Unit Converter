@@ -1,0 +1,26 @@
+# Conversion factors between units
+conversion_factors = {
+    'inches': {'inches': 1, 'feet': 1 / 12, 'yards': 1 / 36, 'centimeters': 2.54, 'meters': 0.0254, 'kilometers': 0.0000254},
+    'feet': {'inches': 12, 'feet': 1, 'yards': 1 / 3, 'centimeters': 30.48, 'meters': 0.3048, 'kilometers': 0.0003048},
+    'yards': {'inches': 36, 'feet': 3, 'yards': 1, 'centimeters': 91.44, 'meters': 0.9144, 'kilometers': 0.0009144},
+    'centimeters': {'inches': 1 / 2.54, 'feet': 1 / 30.48, 'yards': 1 / 91.44, 'centimeters': 1, 'meters': 0.01, 'kilometers': 0.00001},
+    'meters': {'inches': 39.3701, 'feet': 3.28084, 'yards': 1.09361, 'centimeters': 100, 'meters': 1, 'kilometers': 0.001},
+    'kilometers': {'inches': 39370.1, 'feet': 3280.84, 'yards': 1093.61, 'centimeters': 100000, 'meters': 1000, 'kilometers': 1}
+}
+
+# Get user inputs
+convert_from = input("Enter Starting Unit of Measurement (inches, feet, yards, centimeters, meters, kilometers): ").lower()
+convert_to = input("Enter Unit of Measurement to Convert to (inches, feet, yards, centimeters, meters, kilometers): ").lower()
+
+# Check if the units are valid
+if convert_from in conversion_factors and convert_to in conversion_factors[convert_from]:
+    try:
+        # Ask for the starting measurement
+        amount = float(input(f"Enter Starting Measurement in {convert_from.capitalize()}: "))
+        # Perform the conversion
+        result = amount * conversion_factors[convert_from][convert_to]
+        print(f"{amount} {convert_from} is equal to {result:.2f} {convert_to}")
+    except ValueError:
+        print("Invalid measurement. Please enter a number.")
+else:
+    print("Input is not correct. Please enter valid units.")
